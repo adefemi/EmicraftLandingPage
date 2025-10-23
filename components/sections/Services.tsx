@@ -80,51 +80,55 @@ const services = [
 
 export default function Services() {
   return (
-    <section className="py-20 bg-[#f5f5f5]">
+    <section id="services" className="py-20 lg:py-28 xl:py-32 bg-[#f5f5f5]">
       <div className="container mx-auto px-4 lg:px-16">
         {/* Header */}
         <motion.div
-          className="flex flex-col lg:flex-row lg:items-end lg:justify-between mb-16"
-          initial={{ opacity: 0, y: 30 }}
+          className="mb-16"
+          initial={{ opacity: 0, y: 15 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
+          transition={{ duration: 0.5, ease: "easeOut" }}
+          viewport={{ once: true, amount: 0.3 }}
         >
-          <div className="mb-8 lg:mb-0">
+          <div className="mb-8">
             <motion.div
               className="flex items-center gap-4 mb-4"
-              initial={{ opacity: 0, x: -20 }}
+              initial={{ opacity: 0, x: -10 }}
               whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              viewport={{ once: true }}
+              transition={{ duration: 0.5, ease: "easeOut", delay: 0.1 }}
+              viewport={{ once: true, amount: 0.3 }}
             >
               <div className="w-6 h-px bg-black" />
-              <LocalBadge variant="outline" className="border-black text-black">
+              <LocalBadge variant="outline" className="border-black/10 text-black/60">
                 Our Services
               </LocalBadge>
             </motion.div>
 
-            <motion.h2
-              className="text-3xl md:text-4xl font-bold text-black tracking-[0.35px]"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.4 }}
-              viewport={{ once: true }}
-            >
-              Services We Provide
-            </motion.h2>
+            
           </div>
 
-          <motion.p
-            className="text-[#535353] text-base max-w-md font-medium tracking-[0.16px]"
-            initial={{ opacity: 0, x: 20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6, delay: 0.6 }}
-            viewport={{ once: true }}
-          >
-            Discover the range of services we offer to help your business
-            innovate, scale, and stay ahead.
-          </motion.p>
+          <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4 lg:gap-0">
+            <motion.h2
+                className="text-3xl md:text-4xl font-bold text-black tracking-[0.35px]"
+                initial={{ opacity: 0, y: 10 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, ease: "easeOut", delay: 0.2 }}
+                viewport={{ once: true, amount: 0.3 }}
+              >
+                Services We Provide
+              </motion.h2>
+
+            <motion.p
+              className="text-[#535353] text-base max-w-md font-medium tracking-[0.16px]"
+              initial={{ opacity: 0, x: 10 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.5, ease: "easeOut", delay: 0.3 }}
+              viewport={{ once: true, amount: 0.3 }}
+            >
+              Discover the range of services we offer to help your business
+              innovate, scale, and stay ahead.
+            </motion.p>
+          </div>
         </motion.div>
 
         {/* Services Grid */}
@@ -132,22 +136,18 @@ export default function Services() {
           {services.map((service, index) => (
             <motion.div
               key={service.title}
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 15 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: index * 0.1 }}
-              viewport={{ once: true }}
-              className="group"
+              transition={{ duration: 0.4, ease: "easeOut", delay: index * 0.05 }}
+              viewport={{ once: true, amount: 0.2 }}
+              className="h-96 [perspective:1000px] group"
             >
-              <motion.div
-                className="relative w-full h-96"
-                style={{ transformStyle: "preserve-3d" }}
-                whileHover={{ rotateY: 180 }}
-                transition={{ duration: 0.6, ease: "easeInOut" }}
+              <div
+                className="relative w-full h-full transition-transform duration-700 ease-in-out cursor-pointer [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)]"
               >
                 {/* Front Card */}
                 <div
-                  className="absolute inset-0 w-full h-full bg-white shadow group-hover:border-[#0E9A8D] transition-colors duration-300"
-                  style={{ backfaceVisibility: "hidden" }}
+                  className="absolute inset-0 w-full h-full bg-white shadow-lg [backface-visibility:hidden]"
                 >
                   {/* Border accents */}
                   <div className="absolute top-0 left-0 w-8 h-8 border-t-2 border-l-2 border-[#0E9A8D]"></div>
@@ -173,12 +173,12 @@ export default function Services() {
 
                       {/* Features */}
                       <div className="space-y-2">
-                        {service.features.map((feature, featureIndex) => (
+                        {service.features.map((feature) => (
                           <div
                             key={feature}
                             className="flex items-center gap-3"
                           >
-                            <div className="w-4 h-4 rounded-full bg-[#0E9A8D] flex items-center justify-center">
+                            <div className="w-4 h-4 rounded-full bg-[#0E9A8D] flex items-center justify-center flex-shrink-0">
                               <svg
                                 className="w-2.5 h-2.5 text-white"
                                 fill="currentColor"
@@ -203,30 +203,26 @@ export default function Services() {
 
                 {/* Back Card (Flipped) */}
                 <div
-                  className="absolute inset-0 w-full h-full bg-[#0E9A8D]"
-                  style={{
-                    transform: "rotateY(180deg)",
-                    backfaceVisibility: "hidden"
-                  }}
+                  className="absolute inset-0 w-full h-full bg-gradient-to-br from-[#0e9a8d] to-[#028073] shadow-lg [transform:rotateY(180deg)] [backface-visibility:hidden]"
                 >
-                  <div className="p-6 h-full flex flex-col justify-start items-start text-white">
+                  <div className="p-6 h-full flex flex-col justify-center items-start text-white">
                     <div className="w-16 h-16 bg-white bg-opacity-20 rounded-lg flex items-center justify-center mb-6">
                       <span className="text-3xl">{service.icon}</span>
                     </div>
 
                     <h3 className="text-2xl font-bold mb-4">{service.title}</h3>
 
-                    <p className="text-white text-opacity-90 mb-6">
+                    <p className="text-white text-opacity-95 mb-6 leading-relaxed">
                       {service.description}
                     </p>
 
-                    <div className="space-y-3">
+                    <div className="space-y-3 w-full">
                       {service.features.map((feature) => (
                         <div
                           key={feature}
-                          className="flex items-center gap-3 justify-start"
+                          className="flex items-center gap-3"
                         >
-                          <div className="w-4 h-4 rounded-full bg-white flex items-center justify-center">
+                          <div className="w-4 h-4 rounded-full bg-white flex items-center justify-center flex-shrink-0">
                             <svg
                               className="w-2.5 h-2.5 text-[#0E9A8D]"
                               fill="currentColor"
@@ -247,7 +243,7 @@ export default function Services() {
                     </div>
                   </div>
                 </div>
-              </motion.div>
+              </div>
             </motion.div>
           ))}
         </div>

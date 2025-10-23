@@ -4,6 +4,7 @@ import PillButton from "@/components/ui/pill-button";
 import LocalBadge from "@/components/ui/local-badge";
 import { motion } from "framer-motion";
 import Hero from "@/components/common/Hero";
+import Link from "next/link";
 
 export default function AboutHero() {
   return (
@@ -44,9 +45,11 @@ export default function AboutHero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 1.2 }}
           >
-            <PillButton size="md">
-              Start your project
-            </PillButton>
+            <Link href="/about#work-with-us" className="cursor-pointer">
+              <PillButton size="md">
+                Start your project
+              </PillButton>
+            </Link>
           </motion.div>
         </div>
       </div>

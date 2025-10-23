@@ -3,7 +3,6 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
 import LocalBadge from "@/components/ui/local-badge";
-import FlipCard from "@/components/ui/flip-card";
 
 // Figma images for service icons
 const imgService1 = "/d42a3aef46f97dfb1ac0bd02fa963d2465390d2c.svg";
@@ -64,7 +63,7 @@ const services = [
 
 export default function ServicesCards() {
   return (
-    <div className="bg-neutral-100 py-16 px-4 lg:px-16">
+    <div className="bg-neutral-100 py-24 px-4 lg:px-16">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-8 mb-16">
@@ -80,76 +79,91 @@ export default function ServicesCards() {
             </p>
           </div>
           
-          {/* First service card - featured */}
-          <div className="flex-1 max-w-lg">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              viewport={{ once: true }}
-            >
-              <FlipCard
-                frontContent={
-                  <div className="p-6 h-full flex flex-col">
-                    {/* Icon */}
-                    <div className="w-12 h-12 bg-[#0E9A8D] flex items-center justify-center mb-4">
-                      <Image src={services[0].icon} alt="" width={32} height={32} />
-                    </div>
+          
+        </div>
+        {/* First service card - featured */}
+        <div className="mb-6">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+            className="h-64 [perspective:1000px] group"
+          >
+            <div className="relative w-full h-full transition-transform duration-700 ease-in-out cursor-pointer [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)]">
+              {/* Front Card */}
+              <div className="absolute inset-0 w-full h-full bg-white shadow-lg [backface-visibility:hidden]">
+                {/* Border accents */}
+                <div className="absolute top-0 left-0 w-8 h-8 border-t-2 border-l-2 border-[#0E9A8D]"></div>
+                <div className="absolute bottom-0 right-0 w-8 h-8 border-b-2 border-r-2 border-[#0E9A8D]"></div>
 
-                    {/* Content */}
-                    <div className="space-y-4 flex-1">
-                      <h3 className="text-xl font-bold text-black">
-                        {services[0].title}
-                      </h3>
-
-                      <p className="text-[#535353] text-sm leading-relaxed font-medium">
-                        {services[0].description}
-                      </p>
-                    </div>
+                <div className="p-6 h-full flex flex-col">
+                  {/* Icon */}
+                  <div className="w-12 h-12 bg-[#0E9A8D] flex items-center justify-center mb-4">
+                    <Image src={services[0].icon} alt="" width={32} height={32} />
                   </div>
-                }
-                backContent={
-                  <div className="p-6 h-full flex flex-col justify-start items-start text-white">
-                    <div className="w-16 h-16 bg-white bg-opacity-20 rounded-lg flex items-center justify-center mb-6">
-                      <Image src={services[0].icon} alt="" width={32} height={32} />
-                    </div>
 
-                    <h3 className="text-2xl font-bold mb-4">{services[0].title}</h3>
+                  {/* Content */}
+                  <div className="space-y-4 flex-1">
+                    <h3 className="text-xl font-bold text-black">
+                      {services[0].title}
+                    </h3>
 
-                    <p className="text-white text-opacity-90 mb-6">
+                    <p className="text-[#535353] text-sm leading-relaxed font-medium">
                       {services[0].description}
                     </p>
-
-                    <div className="space-y-3">
-                      {services[0].features.map((feature) => (
-                        <div
-                          key={feature}
-                          className="flex items-center gap-3 justify-start"
-                        >
-                          <div className="w-4 h-4 rounded-full bg-white flex items-center justify-center">
-                            <svg
-                              className="w-2.5 h-2.5 text-[#0E9A8D]"
-                              fill="currentColor"
-                              viewBox="0 0 20 20"
-                            >
-                              <path
-                                fillRule="evenodd"
-                                d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                                clipRule="evenodd"
-                              />
-                            </svg>
-                          </div>
-                          <span className="text-white text-sm font-medium">
-                            {feature}
-                          </span>
-                        </div>
-                      ))}
-                    </div>
                   </div>
-                }
-              />
-            </motion.div>
-          </div>
+                </div>
+              </div>
+
+              {/* Back Card (Flipped) */}
+              <div className="absolute inset-0 w-full h-full bg-gradient-to-br from-[#0e9a8d] to-[#028073] shadow-lg [transform:rotateY(180deg)] [backface-visibility:hidden]">
+                <div className="p-6 h-full flex flex-col justify-center items-start text-white">
+                  <div className="w-16 h-16 bg-transparent rounded-lg flex items-center justify-center mb-6">
+                    <Image 
+                      src={services[0].icon} 
+                      alt="" 
+                      width={40} 
+                      height={40}
+                      className="brightness-100"
+                    />
+                  </div>
+
+                  <h3 className="text-2xl font-bold mb-4">{services[0].title}</h3>
+
+                  <p className="text-white text-opacity-95 mb-6 leading-relaxed">
+                    {services[0].description}
+                  </p>
+
+                  <div className="space-y-3 w-full">
+                    {services[0].features.map((feature) => (
+                      <div
+                        key={feature}
+                        className="flex items-center gap-3"
+                      >
+                        <div className="w-4 h-4 rounded-full bg-white flex items-center justify-center flex-shrink-0">
+                          <svg
+                            className="w-2.5 h-2.5 text-[#0E9A8D]"
+                            fill="currentColor"
+                            viewBox="0 0 20 20"
+                          >
+                            <path
+                              fillRule="evenodd"
+                              d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                              clipRule="evenodd"
+                            />
+                          </svg>
+                        </div>
+                        <span className="text-white text-sm font-medium">
+                          {feature}
+                        </span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </motion.div>
         </div>
 
         {/* Service cards grid */}
@@ -161,9 +175,15 @@ export default function ServicesCards() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: index * 0.1 }}
               viewport={{ once: true }}
+              className="h-64 [perspective:1000px] group"
             >
-              <FlipCard
-                frontContent={
+              <div className="relative w-full h-full transition-transform duration-700 ease-in-out cursor-pointer [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)]">
+                {/* Front Card */}
+                <div className="absolute inset-0 w-full h-full bg-white shadow-lg [backface-visibility:hidden]">
+                  {/* Border accents */}
+                  <div className="absolute top-0 left-0 w-8 h-8 border-t-2 border-l-2 border-[#0E9A8D]"></div>
+                  <div className="absolute bottom-0 right-0 w-8 h-8 border-b-2 border-r-2 border-[#0E9A8D]"></div>
+
                   <div className="p-6 h-full flex flex-col">
                     {/* Icon */}
                     <div className="w-12 h-12 bg-[#0E9A8D] flex items-center justify-center mb-4">
@@ -181,26 +201,34 @@ export default function ServicesCards() {
                       </p>
                     </div>
                   </div>
-                }
-                backContent={
-                  <div className="p-6 h-full flex flex-col justify-start items-start text-white">
-                    <div className="w-16 h-16 bg-white bg-opacity-20 rounded-lg flex items-center justify-center mb-6">
-                      <Image src={service.icon} alt="" width={32} height={32} />
+                </div>
+
+                {/* Back Card (Flipped) */}
+                <div className="absolute inset-0 w-full h-full bg-gradient-to-br from-[#0e9a8d] to-[#028073] shadow-lg [transform:rotateY(180deg)] [backface-visibility:hidden]">
+                  <div className="p-6 h-full flex flex-col justify-center items-start text-white">
+                    <div className="w-16 h-16 bg-transparent rounded-lg flex items-center justify-center mb-6">
+                      <Image 
+                        src={service.icon} 
+                        alt="" 
+                        width={40} 
+                        height={40}
+                        className="brightness-0 invert"
+                      />
                     </div>
 
                     <h3 className="text-2xl font-bold mb-4">{service.title}</h3>
 
-                    <p className="text-white text-opacity-90 mb-6">
+                    <p className="text-white text-opacity-95 mb-6 leading-relaxed">
                       {service.description}
                     </p>
 
-                    <div className="space-y-3">
+                    <div className="space-y-3 w-full">
                       {service.features.map((feature) => (
                         <div
                           key={feature}
-                          className="flex items-center gap-3 justify-start"
+                          className="flex items-center gap-3"
                         >
-                          <div className="w-4 h-4 rounded-full bg-white flex items-center justify-center">
+                          <div className="w-4 h-4 rounded-full bg-white flex items-center justify-center flex-shrink-0">
                             <svg
                               className="w-2.5 h-2.5 text-[#0E9A8D]"
                               fill="currentColor"
@@ -220,8 +248,8 @@ export default function ServicesCards() {
                       ))}
                     </div>
                   </div>
-                }
-              />
+                </div>
+              </div>
             </motion.div>
           ))}
         </div>

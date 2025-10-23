@@ -5,16 +5,10 @@ import PortfolioShowcase from "@/components/portfolio/PortfolioShowcase";
 
 export default function Portfolio() {
   return (
-    <div className="container">
-      <div className="">
-        <PortfolioHero />
-
-        <PortfolioShowcase />
-
-        <AllProjects />
-
-
-      </div>
+    <div className="w-full">
+      <PortfolioHero />
+      <PortfolioShowcase />
+      <AllProjects />
     </div>
   );
 }

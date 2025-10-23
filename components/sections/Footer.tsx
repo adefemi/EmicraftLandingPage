@@ -4,6 +4,7 @@ import { IconBrandGithubFilled, IconBrandLinkedinFilled, IconBrandTwitterFilled,
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import Link from 'next/link';
+import { Logo } from '../common/Logo';
 
 const footerLinks = {
   services: [
@@ -27,161 +28,102 @@ const socialLinks = [
 
 export default function Footer() {
   return (
-    <footer className="bg-black py-16">
-      <div className="h-20"/>
+    <footer className="bg-black py-20 lg:py-28">
       <div className="container mx-auto px-4 lg:px-16">
-        <div className="flex items-start justify-between gap-8">
+        <motion.div
+          className="flex flex-col lg:flex-row items-start justify-between gap-12 lg:gap-8"
+          initial={{ opacity: 0, y: 15 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, ease: "easeOut" }}
+          viewport={{ once: true, amount: 0.3 }}
+        >
           {/* Logo and Description */}
-          <motion.div 
-            className=""
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
-          >
+          <div className="lg:max-w-md">
             <div className="flex items-center gap-3 mb-6">
-              <Image src="/logo.svg" alt="EMICRAFT" width={50} height={45} />
-              <div className="text-white">
-                <div className="font-bold text-lg tracking-wider">EMICRAFT</div>
-                <div className="text-sm tracking-widest">TECH SOLUTIONS LIMITED</div>
-              </div>
+              <Logo variant="desktop" />
             </div>
             
-            <p className="text-white text-base leading-relaxed max-w-lg font-medium">
+            <p className="text-white/80 text-base leading-relaxed font-medium mb-6">
               We craft cutting-edge software and provide expert consultancy to drive your digital transformation.
             </p>
 
             {/* Social Media Links */}
-            <div className="flex gap-4 mt-6">
-              {socialLinks.map((social, index) => (
-                <motion.a
+            <div className="flex gap-4">
+              {socialLinks.map((social) => (
+                <Link
                   key={social.name}
                   href={social.href}
-                  className="w-10 h-10 bg-[#191919] rounded-full flex items-center justify-center hover:bg-[#292929] transition-colors duration-300"
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.4, delay: index * 0.1 }}
-                  viewport={{ once: true }}
-                  whileHover={{ scale: 1.1 }}
+                  className="w-10 h-10 bg-[#191919] rounded-full flex items-center justify-center hover:bg-[#0e9a8d] transition-colors duration-300 cursor-pointer"
+                  aria-label={social.name}
                 >
-                  <svg className="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 20 20">
-                    {social.icon === 'linkedin' && (
-                      <IconBrandLinkedinFilled
-                        className="w-5 h-5 text-white"
-                      />
-                    )}
-                    {social.icon === 'twitter' && (
-                      <IconBrandXFilled
-                        className="w-5 h-5 text-white"
-                      />
-                    )}
-                    {social.icon === 'github' && (
-                      <IconBrandGithubFilled
-                        className="w-5 h-5 text-white"
-                      />
-                    )}
-                  </svg>
-                </motion.a>
+                  {social.icon === 'linkedin' && (
+                    <IconBrandLinkedinFilled className="w-5 h-5 text-white" />
+                  )}
+                  {social.icon === 'twitter' && (
+                    <IconBrandXFilled className="w-5 h-5 text-white" />
+                  )}
+                  {social.icon === 'github' && (
+                    <IconBrandGithubFilled className="w-5 h-5 text-white" />
+                  )}
+                </Link>
               ))}
             </div>
-          </motion.div>
+          </div>
 
-         <div className="flex items-start justify-between gap-8 w-2/6">
-           {/* Services Links */}
-           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            viewport={{ once: true }}
-          >
-            <h3 className="text-white font-bold text-base mb-6 tracking-wider">Services</h3>
-            <ul className="space-y-3">
-              {footerLinks.services.map((link, index) => (
-                <motion.li
-                  key={link.name}
-                  initial={{ opacity: 0, x: -10 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.4, delay: index * 0.1 }}
-                  viewport={{ once: true }}
-                >
-                  <Link 
-                    href={link.href}
-                    className="text-[#d8d8d8] text-sm hover:text-[#0e9a8d] transition-colors duration-300"
-                  >
-                    {link.name}
-                  </Link>
-                </motion.li>
-              ))}
-            </ul>
-          </motion.div>
+          {/* Links Section */}
+          <div className="flex flex-col sm:flex-row gap-12 sm:gap-16 lg:gap-20">
+            {/* Services Links */}
+            <div>
+              <h3 className="text-white font-bold text-base mb-6 tracking-wider">Services</h3>
+              <ul className="space-y-3">
+                {footerLinks.services.map((link) => (
+                  <li key={link.name}>
+                    <Link 
+                      href={link.href}
+                      className="text-[#d8d8d8] text-sm hover:text-[#0e9a8d] transition-colors duration-300"
+                    >
+                      {link.name}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
 
-          {/* Company Links */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.3 }}
-            viewport={{ once: true }}
-          >
-            <h3 className="text-white font-bold text-base mb-6 tracking-wider">Company</h3>
-            <ul className="space-y-3">
-              {footerLinks.company.map((link, index) => (
-                <motion.li
-                  key={link.name}
-                  initial={{ opacity: 0, x: -10 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.4, delay: index * 0.1 }}
-                  viewport={{ once: true }}
-                >
-                  <Link 
-                    href={link.href}
-                    className="text-[#d8d8d8] text-sm hover:text-[#0e9a8d] transition-colors duration-300"
-                  >
-                    {link.name}
-                  </Link>
-                </motion.li>
-              ))}
-            </ul>
-          </motion.div>
-         </div>
-        </div>
+            {/* Company Links */}
+            <div>
+              <h3 className="text-white font-bold text-base mb-6 tracking-wider">Company</h3>
+              <ul className="space-y-3">
+                {footerLinks.company.map((link) => (
+                  <li key={link.name}>
+                    <Link 
+                      href={link.href}
+                      className="text-[#d8d8d8] text-sm hover:text-[#0e9a8d] transition-colors duration-300"
+                    >
+                      {link.name}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </motion.div>
 
         {/* Large EMICRAFT Logo */}
         <motion.div 
-          className="border-t border-[#333] mt-12 pt-12 text-center"
-          initial={{ opacity: 0, y: 20 }}
+          className="border-t border-[#333] mt-16 pt-16 text-center"
+          initial={{ opacity: 0, y: 15 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.5 }}
-          viewport={{ once: true }}
+          transition={{ duration: 0.5, ease: "easeOut", delay: 0.1 }}
+          viewport={{ once: true, amount: 0.3 }}
         >
-          <motion.div 
-            className="text-8xl md:text-9xl lg:text-[12rem] font-bold mb-12"
-            style={{
-              background: 'linear-gradient(135deg, #e5e7eb 0%, #6b7280 100%)',
-              WebkitBackgroundClip: 'text',
-              WebkitTextFillColor: 'transparent',
-              backgroundClip: 'text',
-            }}
-            initial={{ opacity: 0, scale: 0.8 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.8, delay: 0.6 }}
-            viewport={{ once: true }}
-          >
-            EMICRAFT
-          </motion.div>
         </motion.div>
 
         {/* Copyright */}
-        <motion.div 
-          className="text-center pb-8"
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          transition={{ duration: 0.6, delay: 0.7 }}
-          viewport={{ once: true }}
-        >
+        <div className="text-center">
           <p className="text-[#d8d8d8] text-sm">
             © {new Date().getFullYear()} <span className="font-bold text-white">EMICRAFT</span> Tech Solutions Limited. All rights reserved.
           </p>
-        </motion.div>
+        </div>
       </div>
     </footer>
   );

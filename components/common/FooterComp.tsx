@@ -12,11 +12,7 @@ export default function FooterComp() {
     <div>
       {shouldUse === "testimonial" && <Testimonials />}
       {shouldUse === "tools" && <Tools />}
-      <div className="relative py-40 bg-[#f5f5f5]">
-        <div className="px-4 lg:px-16 absolute top-0">
-          <WorkWithUs />
-        </div>
-      </div>
+      <WorkWithUs />
       <Footer />
     </div>
   );

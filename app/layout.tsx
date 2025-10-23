@@ -1,17 +1,22 @@
-import { Navbar } from "@/components/Navbar";
 import FooterComp from "@/components/common/FooterComp";
+import { HeaderComponents } from "@/components/common/HeaderComponents";
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Manrope } from "next/font/google";
 import "./globals.css";
 
-const inter = Inter({
-  variable: "--font-inter",
+const manrope = Manrope({
+  variable: "--font-manrope",
   subsets: ["latin"]
 });
 
 export const metadata: Metadata = {
   title: "EMICRAFT - Tech Solutions",
-  description: "Scale Your Business With Innovative Tech Solutions"
+  description: "Scale Your Business With Innovative Tech Solutions",
+  icons: {
+    icon: '/emicraftLogo.svg',
+    shortcut: '/emicraftLogo.svg',
+    apple: '/emicraftLogo.svg',
+  }
 };
 
 export default function RootLayout({
@@ -22,8 +27,8 @@ export default function RootLayout({
 
   return (
     <html lang="en">
-      <body className={`${inter.variable} font-sans antialiased`}>
-        <Navbar />
+      <body className={`${manrope.variable} font-sans antialiased`}>
+        <HeaderComponents />
         {children}
         <FooterComp />
       </body>

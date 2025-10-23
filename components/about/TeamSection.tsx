@@ -23,34 +23,28 @@ const imgArrowLeft = "/822f77ef3f399d7e3dd8706b707ff968cf387871.svg";
 const teamMembers = [
   {
     id: 1,
-    name: "John Doe",
-    role: "Developer",
+    name: "Adefemi Oseni",
+    role: "Founder & CTO",
     image: imgTeam1
   },
   {
     id: 2,
-    name: "John Doe",
-    role: "Developer", 
+    name: "Adedoyin Oseni",
+    role: "Co-Founder & CEO", 
     image: imgTeam2
   },
   {
     id: 3,
-    name: "John Doe",
-    role: "Developer",
+    name: "Timileyin Aliyu",
+    role: "Co-Founder & Head of Operations",
     image: imgTeam3
   },
   {
     id: 4,
-    name: "John Doe",
-    role: "Developer",
+    name: "Oluwasegun Akinshola",
+    role: "Co-Founder & Business Development",
     image: imgTeam4
   },
-  {
-    id: 5,
-    name: "John Doe",
-    role: "Developer",
-    image: imgTeam5
-  }
 ];
 
 export default function TeamSection() {
@@ -83,18 +77,18 @@ export default function TeamSection() {
     <div className="bg-white py-16 px-4 lg:px-16">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
-        <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-8 mb-12">
-          <div className="flex flex-col gap-4">
-            <LocalBadge variant="gradient" size="md" className="mb-2 w-fit">
+        <div className="mb-12">
+          <LocalBadge variant="gradient" size="md" className="mb-6 w-fit">
               Meet the Team
-            </LocalBadge>
+          </LocalBadge>
+          <div className="flex items-center justify-between">
             <h2 className="text-3xl lg:text-4xl font-bold text-black">
-              The Minds Behind Emicraft
-            </h2>
+                The Minds Behind Emicraft
+              </h2>
+            <p className="text-[#535353] text-lg leading-relaxed max-w-lg">
+              Our multidisciplinary team combines technical expertise with business insight to craft solutions that drive real results.
+            </p>
           </div>
-          <p className="text-[#535353] text-lg leading-relaxed max-w-lg">
-            Our multidisciplinary team combines technical expertise with business insight to craft solutions that drive real results.
-          </p>
         </div>
 
         {/* Team members carousel */}
@@ -109,7 +103,7 @@ export default function TeamSection() {
           >
             <CarouselContent className="-ml-4">
               {teamMembers.map((member, index) => (
-                <CarouselItem key={member.id} className="pl-4 md:basis-1/2 lg:basis-1/3 xl:basis-1/5">
+                <CarouselItem key={member.id} className="pl-4 md:basis-1/2 lg:basis-1/3 xl:basis-1/4">
                   <motion.div
                     className="relative h-80 rounded overflow-hidden group cursor-pointer"
                     initial={{ opacity: 0, y: 20 }}
