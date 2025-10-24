@@ -14,7 +14,7 @@ export default function Hero({ children }: HeroProps) {
 
   return (
     <section
-      className="relative h-screen max-h-[90vh] sm:max-h-[80vh] lg:max-h-[70vh] bg-[#090909] overflow-hidden"
+      className="relative py-24 lg:py-36 bg-[#090909] overflow-hidden"
     >
       {/* Lottie Background Animation */}
       <div
